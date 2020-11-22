@@ -21,7 +21,7 @@ The plugin includes a new scene menu item to give cookies to everyone in a scene
 
 ## Installation
 
-In the game, run `plugin/install cookies`.
+In the game, run `plugin/install <github url>`.
 
 Additional configuration options are described below.
 
