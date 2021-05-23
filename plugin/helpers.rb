@@ -17,9 +17,15 @@ module AresMUSH
       
       Global.logger.info "#{giver.name} gave #{recipient.name} a cookie."
 
-      Achievements.award_achievement(giver, "cookie_given")
-
       return nil
+    end
+    
+    def self.get_web_sheet(char, viewer)
+      {
+        total_cookies_received: char.total_cookies,
+        total_cookies_given: char.total_cookies_given,
+        weekly_cookies: char.cookies_given.map { |a| a.recipient.name }
+      }
     end
   end
 end
