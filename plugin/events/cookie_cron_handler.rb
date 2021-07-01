@@ -10,28 +10,35 @@ module AresMUSH
         awards = ""
         counts = {}
         given_counts = {}
+        chars = {}
         
         CookieAward.all.each do |c|
           recipient = c.recipient
           giver = c.giver
           
-          if (counts.has_key?(c.recipient))
-            counts[recipient] = counts[recipient] + 1
+          name = recipient.name
+          if (counts.has_key?(name))
+            counts[name] = counts[name] + 1
           else
-            counts[recipient] = 1 
+            counts[name] = 1 
           end
+          chars[name] = c.recipient
           
-          if (given_counts.has_key?(c.giver))
-            given_counts[giver] = given_counts[giver] + 1
+          name = giver.name
+          if (given_counts.has_key?(name))
+            given_counts[name] = given_counts[name] + 1
           else
-            given_counts[giver] = 1 
+            given_counts[name] = 1 
           end
+          chars[name] = c.giver
+          
           c.delete
         end
         
         default_levels = [1, 10, 25, 50, 100, 200, 500, 1000]
         
-        counts.sort_by { |char, count| count }.reverse.each_with_index do |(char, count), i|
+        counts.sort_by { |name, count| count }.reverse.each_with_index do |(name, count), i|
+          char = chars[name]
           index = i+1
           if (i <= 10)
             num = "#{index.to_s}."
@@ -49,7 +56,8 @@ module AresMUSH
           end
         end
         
-        given_counts.sort_by { |char, count| count }.each do |char, count|
+        given_counts.sort_by { |name, count| count }.each do |name, count|
+          char = chars[name]
           char.update(total_cookies_given: char.total_cookies_given + count)
           
           Achievements.achievement_levels("cookie_given", default_levels).reverse.each do |count|

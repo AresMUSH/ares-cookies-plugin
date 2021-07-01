@@ -27,5 +27,13 @@ module AresMUSH
         weekly_cookies: char.cookies_given.map { |a| a.recipient.name }
       }
     end
+    
+    def self.uninstall_plugin
+      CookieAward.all.each { |c| c.delete }
+      Character.all.each do |c|
+        c.update(total_cookies: nil)
+        c.update(total_cookies_given: nil)
+      end
+    end
   end
 end

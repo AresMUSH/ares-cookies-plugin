@@ -39,7 +39,7 @@ The system will post the top cookie earners to the forum.  You can configure whi
 
 ## Uninstalling
 
-Removing the plugin requires some code fiddling.  See [Uninstalling Plugins](https://www.aresmush.com/tutorials/code/extras.html#uninstalling-plugins).
+Removing the plugin requires some code fiddling.  See [Uninstalling Cookies](Uninstalling.md).
 
 ## License
 
