@@ -38,4 +38,6 @@ Ares plugins plug IN easily, but taking them out requires a bit of code fiddling
     * aresmush/game/config/cookies.yml
     * Web portal files - See the /webportal folder in this repo for a specific list of files.
 
-8. Deploy the website.
+8. Run the `load all` command.
+
+9. Run the `website/deploy` command.
