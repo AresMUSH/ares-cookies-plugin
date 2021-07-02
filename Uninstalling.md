@@ -4,7 +4,7 @@ Ares plugins plug IN easily, but taking them out requires a bit of code fiddling
 
 1. Open the [tinker](https://aresmush.com/tutorials/code/tinker.html#how-to-tinker) page (Admin -> Tinker) in the web portal with a coder character.
 
-2. Modify the database definition.  Copy/paste the following to the tinker file, right below `module AresMUSH`. This will let us clear out the database fields.
+2. Copy/paste the following to the tinker file, **right below `module AresMUSH`**. This will let us clear out the database fields.
  
 ```
    class Character
@@ -19,7 +19,7 @@ Ares plugins plug IN easily, but taking them out requires a bit of code fiddling
    begin 
       Cookies.uninstall_plugin
       Manage.uninstall_plugin("cookies")
-      client.emit "Plugin uninstalled."
+      client.emit_success "Plugin uninstalled."
       
     rescue Exception => e
       Global.logger.debug "Error loading plugin: #{e}  backtrace=#{e.backtrace[0,10]}"
@@ -27,13 +27,15 @@ Ares plugins plug IN easily, but taking them out requires a bit of code fiddling
     end
 ```
 
-4. Click "Save".
+4. Click "Save" on the tinker page.
 
 5. Switch to a game client window and run the `tinker` command.
 
-6. Switch back to the web portal tinker window and click "Reset".
+6. Switch back to the web portal tinker page and click "Reset".
 
-7. Manually remove the cookies-related files, including:
+7. Manually remove all plugin's files from your server (and GitHub fork, if applicable), including:
     * aresmush/plugins/cookies
     * aresmush/game/config/cookies.yml
     * Web portal files - See the /webportal folder in this repo for a specific list of files.
+
+8. Deploy the website.
