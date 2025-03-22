@@ -4,7 +4,7 @@
 
 **Supported** Although not part of the main Ares code release, this is a supported plugin.  Report any problems you encounter: https://aresmush.com/feedback
 
-Designed for AresMUSH 1.0
+See release notes to determine which versions of AresMUSH are compatible.
 
 ## Overview
 

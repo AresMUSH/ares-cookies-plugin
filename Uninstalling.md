@@ -13,23 +13,15 @@ Ares plugins plug IN easily, but taking them out requires a bit of code fiddling
     end
 ```
 
-3. Add the following code to the `handle` method of the tinker file.
+3. Add the following code to the `handle` method of the tinker file, right below `def handle`.
  
 ```
-   begin 
-      Cookies.uninstall_plugin
-      Manage.uninstall_plugin("cookies")
-      client.emit_success "Plugin uninstalled."
-      
-    rescue Exception => e
-      Global.logger.debug "Error loading plugin: #{e}  backtrace=#{e.backtrace[0,10]}"
-      client.emit_failure "Error uninstalling plugin: #{e}"
-    end
+    Cookies.uninstall_plugin(client)
 ```
 
 4. Click "Save" on the tinker page.
 
-5. Switch to a game client window and run the `tinker` command.
+5. Switch to a game client window with a coder character and run the `tinker` command.
 
 6. Switch back to the web portal tinker page and click "Reset".
 
@@ -38,6 +30,4 @@ Ares plugins plug IN easily, but taking them out requires a bit of code fiddling
     * aresmush/game/config/cookies.yml
     * Web portal files - See the /webportal folder in this repo for a specific list of files.
 
-8. Run the `load all` command.
-
-9. Run the `website/deploy` command.
+8. [Restart the game engine](https://aresmush.com/tutorials/manage/shutdown.html).

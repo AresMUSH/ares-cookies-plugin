@@ -28,12 +28,19 @@ module AresMUSH
       }
     end
     
-    def self.uninstall_plugin
-      CookieAward.all.each { |c| c.delete }
-      Character.all.each do |c|
-        c.update(total_cookies: nil)
-        c.update(total_cookies_given: nil)
-      end
+    def self.uninstall_plugin(client)
+      begin 
+        CookieAward.all.each { |c| c.delete }
+        Character.all.each do |c|
+          c.update(total_cookies: nil)
+          c.update(total_cookies_given: nil)
+        end
+         Manage.uninstall_plugin("cookies")
+         client.emit_success "Plugin uninstalled."
+      
+       rescue Exception => e
+         client.emit_failure "Error uninstalling plugin: #{e} backtrace=#{e.backtrace[0,10]}"
+       end
     end
   end
 end
